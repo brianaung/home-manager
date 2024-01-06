@@ -53,7 +53,6 @@
 		eza
 		xclip
 		unzip
-		curl
 		ranger
 
 		# todo: i don't know if it's idiomatic to install them globally.
