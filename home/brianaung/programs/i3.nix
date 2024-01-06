@@ -1,4 +1,4 @@
-{ config, pkgs, lib, root, ... }:
+{ config, pkgs, lib, ... }:
 
 let
 	mod = "Mod4";
@@ -31,7 +31,7 @@ in {
 				{ command = "${pkgs.pasystray}/bin/pasystray"; notification = false; }
 
 				{ command = "${pkgs.autorandr}/bin/autorandr --change"; always = true; notification = false; }
-				{ command = "${pkgs.feh}/bin/feh --no-fehbg --bg-fill ${root}/walls/wall3.jpg"; always = true; notification = false; }
+				# { command = "${pkgs.feh}/bin/feh --no-fehbg --bg-fill ${root}/walls/wall3.jpg"; always = true; notification = false; }
 				{ command = "${pkgs.picom}/bin/picom"; always = true; notification = false; }
 
 				{ command = "${pkgs.brave}/bin/brave"; }

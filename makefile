@@ -1,7 +1,6 @@
+NIXNAME ?= lenovo-5-amd
+
 system:
-	sudo nixos-rebuild switch --flake .#$(FLAKE) --impure
+	sudo nixos-rebuild switch --flake ".#${NIXNAME}"
 
-home:
-	home-manager switch --flake .#$(FLAKE)
-
-.PHONY: system home
+.PHONY: system
