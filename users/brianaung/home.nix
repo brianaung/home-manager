@@ -66,7 +66,7 @@
 	xdg.configFile = {
 		# i want to keep this out of nix store because I edit this way too often, that I hate having to keep rebuilding for changes
 		"nvim".source = 
-			config.lib.file.mkOutOfStoreSymlink "/home/${user}/.config/home-manager/home/${user}/xdg-config/nvim"; # don't use relative path, it will link to nix store
+			config.lib.file.mkOutOfStoreSymlink "/home/${user}/.config/home-manager/users/${user}/xdg-config/nvim"; # don't use relative path, it will link to nix store
 
 		"ranger" = {
 			source = ./xdg-config/ranger;

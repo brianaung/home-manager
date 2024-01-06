@@ -23,7 +23,7 @@
 						{
 							home-manager.useGlobalPkgs = true;
 							home-manager.useUserPackages = true;
-							home-manager.users.brianaung = import ./home/brianaung/home.nix;
+							home-manager.users.brianaung = import ./users/brianaung/home.nix;
 							home-manager.extraSpecialArgs = {
 								inherit inputs;
 								root = ./.;
