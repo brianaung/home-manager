@@ -3,6 +3,8 @@
 {
 	virtualisation.virtualbox.host.enable = true;
 
+	users.mutableUsers = false;
+
 	# enable flakes
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
