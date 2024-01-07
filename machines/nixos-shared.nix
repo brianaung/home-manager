@@ -84,7 +84,10 @@
 
 		# ===== using only i3 =====
 		# desktopManager.xterm.enable = false;
-		# displayManager.defaultSession = "none+i3";
+		# displayManager = {
+		# 	defaultSession = "none+i3";
+		# 	lightdm.enable = true;
+		# };
 		# windowManager.i3.enable = true;
 
 		# ===== using xfce+i3 =====
@@ -107,10 +110,10 @@
 		};
 	};
 
-	services.udisks2.enable = true;
+	# services.udisks2.enable = true;
 
 	# Enable CUPS to print documents.
-	services.printing.enable = true;
+	# services.printing.enable = true;
 
 	# Open ports in the firewall.
 	# networking.firewall.allowedTCPPorts = [ ... ];
