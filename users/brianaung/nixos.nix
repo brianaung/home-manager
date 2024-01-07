@@ -4,7 +4,7 @@
 	# we use zsh as our shell
 	programs.zsh.enable = true;
 
-	# users.mutableUsers = false;
+	users.mutableUsers = false;
 
 	# Define a user account. Don't forget to set a password with ‘passwd’.
 	users.users.brianaung = {
@@ -12,7 +12,7 @@
 		shell = pkgs.zsh;
 		description = "Brian Aung";
 		extraGroups = [ "networkmanager" "wheel" ];
-		passwordFile = "/etc/passwordFile";
+		hashedPasswordFile = "/etc/passwordFile";
 		# packages = with pkgs; [];
 	};
 }
