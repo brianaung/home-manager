@@ -1,19 +1,17 @@
 # NixOS Minimal Installer Guide
 
 ## Installation Summary
-`sudo -i`
+### Setup network
+wip
 
-Download configs.
-```
-curl -LJO https://github.com/brianaung/home-manager/archive/refs/heads/main.tar.gz
-tar -zxvf home-manager-main.tar.gz
-```
+### Bootstraping
+Lauch shell as root user > `sudo -i`.
 
-`nix-shell -p gnumake`
+Partition and format disks, then install.
+- Curl the makefile > `curl -O https://raw.githubusercontent.com/brianaung/home-manager/main/makefile`.
+- Then run > `make bootstrap`.
 
-`make bootstrap`
-
-### For new machines
+### For new machines without existing configs
 `cp /etc/nixos/configuration.nix machines/<NIXNAME>.nix`
 `cp /etc/nixos/hardware-configuration.nix machines/hardwares/<NIXNAME>.nix`
 
@@ -23,18 +21,14 @@ update `<NIXNAME>.nix`
 - remove `nix.settings.experimental-features = ...`
 
 update `flake.nix`:
-```
+```nix
 <NIXNAME> = mkSystem "<NIXNAME>" {
 	system = "<ARCHITECTURE>";
-	user = "<USER>";
+	user = "<USER>"; # check `users/<USER>/nixos.nix` file to update user account details
 };
 ```
 
-rebuild:
-```
-nixos-rebuild switch --flake .#<NIXNAME>
-```
+### Rebuilding
+Rebuild the system > `nixos-rebuild switch --flake .#<NIXNAME>`.
 
-```
-passwd <user>
-```
+Generate hashed password > `mkpasswd`. Then Store it in `/etc/passwordFile`.
