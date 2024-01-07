@@ -12,6 +12,7 @@
 		shell = pkgs.zsh;
 		description = "Brian Aung";
 		extraGroups = [ "networkmanager" "wheel" ];
+		passwordFile = "/etc/passwordFile";
 		# packages = with pkgs; [];
 	};
 }
