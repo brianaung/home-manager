@@ -22,6 +22,11 @@
 				system = "x86_64-linux";
 				user = "brianaung";
 			};
+
+			# vm-x86 = mkSystem "vm-x86" {
+			# 	system = "x86_64-linux";
+			# 	user = "brianaung";
+			# };
 		};
 	};
 }

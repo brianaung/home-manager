@@ -1,31 +1,28 @@
-# This function creates a NixOS system based on our VM setup for a
-# particular architecture.
+# This function creates a NixOS system based on a particular architecture and user.
 { nixpkgs, inputs }:
 
 name:
 {
-  system,
-  user,
+	system,
+	user
 }:
 
 let
-  machineConfig = ../machines/${name}.nix;
-  userOSConfig = ../users/${user}/nixos.nix;
-  userHMConfig = ../users/${user}/home.nix;
-
+	home-manager = inputs.home-manager.nixosModules;
 	systemFunc = nixpkgs.lib.nixosSystem;
 in systemFunc rec {
-  inherit system;
-  modules = [
-    machineConfig
-    userOSConfig
-		home-manager.nixosModules.home-manager {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.${user} = import userHMConfig 
+	inherit system;
+	modules = [
+		../machines/${name}.nix;		# machine config
+		../users/${user}/nixos.nix; # os user config (defines user account, etc.)
+		# home-manager module
+		home-manager.home-manager {
+			home-manager.useGlobalPkgs = true;
+			home-manager.useUserPackages = true;
+			home-manager.users.${user} = import ../users/${user}/home.nix;
 			home-manager.extraSpecialArgs = {
 				inherit inputs user;
 			};
-    };
-  ];
+		}
+	];
 }
