@@ -32,9 +32,7 @@ update `flake.nix`:
 
 rebuild:
 ```
-export NIXPKGS_ALLOW_UNFREE=1
-export NIXPKGS_ALLOW_INSECURE=1
-nixos-rebuild switch --flake .#<NIXNAME> --impure
+nixos-rebuild switch --flake .#<NIXNAME>
 ```
 
 ```
