@@ -53,6 +53,6 @@ Update `flake.nix`.
 ### Rebuilding
 Rebuild the system > `nixos-rebuild switch --flake .#<NIXNAME>`.
 
-Generate hashed password > `mkpasswd -m sha-512 <your_password> > /etc/passwordFile`
+***(IMPORTANT)*** Generate hashed password > `mkpasswd -m sha-512 <your_password> > /etc/passwordFile`
 
 Finally, `reboot`.
