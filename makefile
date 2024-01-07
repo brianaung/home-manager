@@ -18,6 +18,7 @@ bootstrap:
 	nixos-generate-config --root /mnt; \
 	sed -i '/system\.stateVersion = .*/a \
 		nix.settings.experimental-features = [ "nix-command" "flakes" ]; \
+		users.users.root.initialPassword = \"root\";\n \
 	' /mnt/etc/nixos/configuration.nix; \
 	nixos-install --no-root-passwd && reboot;
 
