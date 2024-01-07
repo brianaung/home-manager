@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+	virtualisation.virtualbox.host.enable = true;
+
 	# enable flakes
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
