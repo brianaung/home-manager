@@ -14,20 +14,21 @@ wip (not necessary in vm)
 - Then run > `make bootstrap`.
 - Login again as `username: root` and `password: root`. 
 
-### For new machines without existing configs
+### Download configs
 1. Curl and extract config repository.
 ```
 curl -LJO https://github.com/brianaung/home-manager/archive/refs/heads/main.tar.gz; && \
 tar -zxf home-manager-main.tar.gz
 ```
 
-2. Copy the generated system config files.
+### For new machines (skip to [rebuilding](#rebuilding) if you are setting up on old machine)
+1. Copy the generated system config files.
 ```
 cp /etc/nixos/configuration.nix machines/<NIXNAME>.nix && \
 cp /etc/nixos/hardware-configuration.nix machines/hardwares/<NIXNAME>.nix
 ```
 
-3. Update `./machines/<NIXNAME>.nix`.
+2. Update `./machines/<NIXNAME>.nix`.
 - update path to point to correct hardware configuration.
 - add path to shared config.
 - optionally remove duplicate expressions (those that already exists in shared config), although they shouldn't cause any issues.
@@ -39,7 +40,7 @@ cp /etc/nixos/hardware-configuration.nix machines/hardwares/<NIXNAME>.nix
 	users.users.root.initialPassword = \"root\";
     ```
 
-4. Update `flake.nix`.
+3. Update `flake.nix`.
 ```nix
 <NIXNAME> = mkSystem "<NIXNAME>" {
     system = "<ARCHITECTURE>";
