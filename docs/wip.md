@@ -10,6 +10,8 @@ parted /dev/sda -- mkpart swap linux-swap -8GB 100%
 parted /dev/sda -- mkpart ESP fat32 1MB 512MB
 parted /dev/sda -- set 3 esp on
 
+lsblk
+
 mkfs.ext4 -L nixos /dev/sda1
 mkswap -L swap /dev/sda2
 swapon /dev/sda2
@@ -18,23 +20,29 @@ mount /dev/disk/by-label/nixos /mnt
 mkdir -p /mnt/boot                      # (for UEFI systems only)
 mount /dev/disk/by-label/boot /mnt/boot # (for UEFI systems only)
 nixos-generate-config --root /mnt
-nano /mnt/etc/nixos/configuration.nix
+vi /mnt/etc/nixos/configuration.nix
+add `nix.settings.experimental-features = [ "nix-command" "flakes" ];`
+set -i $'/system\.stateVersion = .*/a \
+\tnix.settings.experimental-features = [ "nix-command" "flakes" ];' \
+/mnt/etc/nixos/configuration.nix
+
 nixos-install
 reboot
 ```
 
-### Curl the repo
-Curl the configs:
+## Summary
+`sudo -i`
+
+Download configs.
 ```
 curl -LJO https://github.com/brianaung/home-manager/archive/refs/heads/main.tar.gz
+tar -zxvf home-manager-main.tar.gz
 ```
 
-Extract:
-```
-tar -zxvf main.tar.gz
-```
+`nix-shell -p gnumake`
 
-Rebuild system with config.
+`make bootstrap`
+
 ```
 sudo nixos-rebuild switch --flake .#<machine>
 ```
