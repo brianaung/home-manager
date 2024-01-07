@@ -12,6 +12,8 @@
 	# temporary fix for obsidian issue: https://github.com/junegunn/fzf/issues/337
 	nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
+	users.mutableUsers = false;
+
 	networking.hostName = "nixos"; # Define your hostname.
 	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
