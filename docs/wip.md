@@ -34,13 +34,11 @@ Extract:
 tar -zxvf main.tar.gz
 ```
 
-### Create user
-```
-useradd -m <user>
-passwd <user>
-```
-
 Rebuild system with config.
 ```
+sudo nixos-rebuild switch --flake .#<machine>
+```
 
+```
+passwd <user>
 ```

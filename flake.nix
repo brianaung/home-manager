@@ -12,26 +12,16 @@
 		nix-colors.url = "github:misterio77/nix-colors";
 	};
 
-	outputs = inputs@{ nixpkgs, home-manager, ... }: {
-			nixosConfigurations = {
-				lenovo-5-amd = nixpkgs.lib.nixosSystem {
-					system = "x86_64-linux";
-					modules = [
-						./machines/lenovo-5-amd.nix
-
-						home-manager.nixosModules.home-manager
-						{
-							home-manager.useGlobalPkgs = true;
-							home-manager.useUserPackages = true;
-							home-manager.users.brianaung = import ./users/brianaung/home.nix;
-							home-manager.extraSpecialArgs = {
-								inherit inputs;
-								root = ./.;
-								user = "brianaung";
-							};
-						}
-					];
-				};
+	outputs = { nixpkgs, home-manager, ... }@inputs: let
+		mkSystem = import ./lib/mksystem.nix {
+			inherit nixpkgs inputs;
+		};
+	in {
+		nixosConfigurations = {
+			lenovo-5-amd = mkSystem "lenovo-5-amd" {
+				system = "x86_64-linux";
+				user = "brianaung";
 			};
 		};
+	};
 }

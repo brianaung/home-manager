@@ -40,18 +40,6 @@
 		LC_TIME = "en_AU.UTF-8";
 	};
 
-	# we use zsh as our shell
-	programs.zsh.enable = true;
-
-	# Define a user account. Don't forget to set a password with ‘passwd’.
-	users.users.brianaung = {
-		isNormalUser = true;
-		shell = pkgs.zsh;
-		description = "Brian Aung";
-		extraGroups = [ "networkmanager" "wheel" ];
-		# packages = with pkgs; [];
-	};
-
 	environment.systemPackages = with pkgs; [
 		feh
 		picom
